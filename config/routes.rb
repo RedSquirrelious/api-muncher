@@ -1,23 +1,26 @@
 Rails.application.routes.draw do
-  get 'users/index'
+  get 'users/index' => 'users#index'
 
-  get 'users/show'
+  get 'users/show' => 'users#show'
 
-  get 'users/new'
+  get 'users/new' => 'users#new'
 
-  get 'users/create'
+  post 'users/create' => 'users#create'
 
-  get 'users/edit'
+  get 'users/edit' => 'users#edit'
 
-  get 'users/update'
+  put 'users/update' => 'users#update'
 
-  get 'users/destroy'
+  delete 'users/destroy' => 'users#destroy'
 
-  get 'sessions/new'
+#SESSIONS ROUTES
 
-  get 'sessions/create'
+	resources :sessions
 
-  get 'sessions/destroy'
+
+  get "/auth/:provider/callback" => 'sessions#create'
+
+  get 'logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
