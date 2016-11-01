@@ -33,6 +33,12 @@ gem 'omniauth-github'
 #make it easier to read
 gem 'awesome_print'
 
+# API GEMS
+gem 'httparty'
+
+
+# Helps make it pretty, CSS-related gem
+gem 'foundation-rails'
 
 
 # Use ActiveModel has_secure_password
