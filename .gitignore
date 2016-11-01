@@ -4,8 +4,6 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
-/.bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -22,16 +20,10 @@
 
 # Hide the .env because it's full of secrets!
 /.env
+/*.env
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-betsy_development
-betsy_test
-
-
-# Ignore this annoying MACOS file which is a caching file and keeps thumbnails
-.DS_store
+# Hide the cassets
+/test/cassettes
 
 # See https://help.github.com/articles/ignoring-files for more about ignoring files.
 #*.rbc
