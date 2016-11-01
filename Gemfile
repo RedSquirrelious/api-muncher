@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #gem for oAuth github Authentication
 gem 'omniauth'
 gem 'omniauth-github'
+gem "omniauth-google-oauth2"
 
 #make it easier to read
 gem 'awesome_print'
