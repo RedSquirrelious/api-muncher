@@ -29,10 +29,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #gem for oAuth github Authentication
 gem 'omniauth'
 gem 'omniauth-github'
+gem "omniauth-google-oauth2"
 
 #make it easier to read
 gem 'awesome_print'
 
+# API GEMS
+gem 'httparty'
+
+
+# Helps make it pretty, CSS-related gem
+gem 'foundation-rails'
 
 
 # Use ActiveModel has_secure_password
@@ -59,6 +66,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'better_errors'
+  gem 'minitest-vcr'
+  gem 'webmock'
 end
 
 
@@ -70,4 +79,3 @@ end
 gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 
-end
