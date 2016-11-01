@@ -1,4 +1,30 @@
 Rails.application.routes.draw do
+  get 'recipe_searches/index'
+
+  get 'recipe_searches/show'
+
+  get 'recipe_searches/new'
+
+  get 'recipe_searches/create'
+
+  get 'recipe_searches/edit'
+
+  get 'recipe_searches/update'
+
+  get 'recipe_searches/destroy'
+
+  get 'recipe_searches/index'
+
+  get 'recipe_searches/show'
+
+  get 'recipe_searches/new'
+
+  get 'recipe_searches/edit'
+
+  get 'recipe_searches/update'
+
+  get 'recipe_searches/destroy'
+
   get 'users/index' => 'users#index'
 
   get 'users/show' => 'users#show'
