@@ -1,5 +1,7 @@
 #recipesearch.rb
 
+require 'recipesearchwrapper'
+
 class RecipeSearch
 	attr_reader :name, :id
 
