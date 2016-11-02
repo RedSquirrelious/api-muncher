@@ -1,4 +1,4 @@
-require 'testhelper'
+require 'test_helper'
 require 'recipesearch'
 
 class RecipeSearchTest < ActionController::TestCase
