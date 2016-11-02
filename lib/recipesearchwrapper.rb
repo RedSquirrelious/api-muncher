@@ -4,6 +4,7 @@ require 'recipesearch'
 
 class RecipeSearchWrapper
 
+#CONSTANTS
 #hide that information away!
 	APP_ID = ENV[APP_ID]
 	APP_KEY = ENV[APP_KEY]
@@ -13,26 +14,45 @@ class RecipeSearchWrapper
 
 #because who wants to type all that?  
 	AUTH = "&app_id=APP_ID&app_key=APP_KEY"
+# /CONSTANTS
+
+
+#CREATE A WRAPPER 
+	def initialize(uri, label, params = {})
+		@uri = uri   #aka id
+		@label = label
+		@image = params["image"]
+		@shareas = params["shareas"] #link to the recipe on edamam website, as opposed to the source website
+	end
 
 
 #helps users find recipes by an ingredient
-	self.search_recipes_by_one_keyword(keyword)
+	self.search_by_one_keyword(keyword, app_id = nil, app_key = nil)
+		app_id =|| APP_ID
+		app_key =|| APP_KEY
+
 		url = BASE_URL + "search?q=#{keyword}" + AUTH
 
-		response = HTTParty.get(url)
+#THIS IS WHERE THE MAGIC HAPPENS
+		data = HTTParty.get(url)
 
 		my_recipes = []
 
-		response["recipes"] 
+		data["recipes"] 
 
-		response["recipes"].each do |recipe|
-			id = recipe["id"]
-			name = recipe["name"]
+		if data["recipes"]
+			data["recipes"].each do |recipe|
+				wrapper = RecipeSearch.new (recipe["uri"], recipe["label"], image: recipe["image"], shareas: recipe["shareas"]
+				my_recipes << wrapper
+			end
+			
+			return my_recipes
+		
+		else
 
-			my_recipes << RecipeSearch.new(name, id)
+			return nil
+		
 		end
-
-		return my_recipes
 	end
 
 end
