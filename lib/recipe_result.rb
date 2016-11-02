@@ -5,11 +5,11 @@
 require 'recipe_search_wrapper'
 
 class RecipeResult
-	attr_reader :label, :id, :photo_url, :recipe_url
+	attr_reader :label, :uri, :image, :shareas
 
 	def initialize(uri, label, params = {})
 		if uri == nil || uri == "" || label == nil || label == ""
-			raise ArguementError
+			raise ArgumentError
 		end
 
 		@uri = uri   #aka id
