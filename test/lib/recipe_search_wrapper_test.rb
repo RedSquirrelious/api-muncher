@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'recipesearchwrapper'
+require 'recipe_search_wrapper'
 
 class RecipeSearchWrapperTest < ActionController::TestCase
 

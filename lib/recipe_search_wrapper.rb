@@ -1,6 +1,6 @@
-#recipesearchwrapper.rb
+#recipe_search_wrapper.rb
 require 'httparty'
-require 'recipesearch'
+require 'recipe_result'
 
 class RecipeSearchWrapper
 
@@ -42,7 +42,7 @@ class RecipeSearchWrapper
 
 		if data["recipes"]
 			data["recipes"].each do |recipe|
-				wrapper = RecipeSearch.new(recipe["uri"], recipe["label"], image: recipe["image"], shareas: recipe["shareas"])
+				wrapper = RecipeResult.new(recipe["uri"], recipe["label"], image: recipe["image"], shareas: recipe["shareas"])
 				my_recipes << wrapper
 			end
 			

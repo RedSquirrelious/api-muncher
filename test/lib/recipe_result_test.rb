@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'recipesearch'
+require 'recipe_result'
 
-class RecipeSearchTest < ActionController::TestCase
+class RecipeResultTest < ActionController::TestCase
 #make sure rake is picking up the test
 	test "the truth" do
 		assert true
