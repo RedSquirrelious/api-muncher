@@ -6,8 +6,8 @@ class RecipeSearchWrapper
 
 #CONSTANTS
 #hide that information away!
-	APP_ID = ENV[APP_ID]
-	APP_KEY = ENV[APP_KEY]
+	APP_ID = ENV["APP_ID"]
+	APP_KEY = ENV["APP_KEY"]
 
 #this is where it all starts
 	BASE_URL = "https://api.edamam.com/"
@@ -27,9 +27,9 @@ class RecipeSearchWrapper
 
 
 #helps users find recipes by an ingredient
-	self.search_by_one_keyword(keyword, app_id = nil, app_key = nil)
-		app_id =|| APP_ID
-		app_key =|| APP_KEY
+	def self.search_by_one_keyword(keyword, app_id = nil, app_key = nil)
+		app_id ||= APP_ID
+		app_key ||= APP_KEY
 
 		url = BASE_URL + "search?q=#{keyword}" + AUTH
 
@@ -42,7 +42,7 @@ class RecipeSearchWrapper
 
 		if data["recipes"]
 			data["recipes"].each do |recipe|
-				wrapper = RecipeSearch.new (recipe["uri"], recipe["label"], image: recipe["image"], shareas: recipe["shareas"]
+				wrapper = RecipeSearch.new(recipe["uri"], recipe["label"], image: recipe["image"], shareas: recipe["shareas"])
 				my_recipes << wrapper
 			end
 			
