@@ -1,10 +1,10 @@
-#recipesearch.rb
+#recipe_result.rb
 
 #NOTE dietlabels, health labels, cautions, ingredientlines, ingredients, totalNutrients, totalDaily show up as arrays (ingredients is an array of hashes)
 
-require 'recipesearchwrapper'
+require 'recipe_search_wrapper'
 
-class RecipeSearch
+class RecipeResult
 	attr_reader :label, :id, :photo_url, :recipe_url
 
 	def initialize(uri, label, params = {})
