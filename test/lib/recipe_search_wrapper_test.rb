@@ -10,7 +10,7 @@ class RecipeSearchWrapperTest < ActionController::TestCase
 
 	test "Can Retrieve a List of Recipes" do
 		
-		VCR.use_cassette("recipe list") do 
+		VCR.use_cassette("recipe-list") do 
 			
 			recipes = RecipeSearchWrapper.search_by_one_keyword("carrot")
 
