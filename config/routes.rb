@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  get 'recipes/search'
 
-  get 'recipes/index'
+root 'recipes#index'
 
-  get 'recipes/show'
+  #********     RECIPES ROUTES     *********
+
+  get 'recipes/search' => 'recipes#search', as: 'search'
+
+  get 'recipes' => 'recipes#index', as: 'index'
+
+  get 'recipes/show' => 'recipes#show', as: 'show'
 
   get 'recipes/new'
 
@@ -15,20 +20,7 @@ Rails.application.routes.draw do
 
   get 'recipes/destroy'
 
-	root 'recipe_searches#index'
-  get 'recipe_searches/index' => 'recipe_searches#index'
-
-  get 'recipe_searches/show' => 'recipe_searches#show', as: 'show'
-
-  get 'recipe_searches/new' => 'recipe_searches#new'
-
-  get 'recipe_searches/create' => 'recipe_searches#create'
-
-  get 'recipe_searches/edit' => 'recipe_searches#edit'
-
-  get 'recipe_searches/update' => 'recipe_searches#update'
-
-  get 'recipe_searches/destroy'
+  #********     USERS ROUTES     *********
 
 
   get 'users/index' => 'users#index'
