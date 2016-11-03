@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
-	root: 'recipe_searches#index'
+  get 'recipes/search'
+
+  get 'recipes/index'
+
+  get 'recipes/show'
+
+  get 'recipes/new'
+
+  get 'recipes/create'
+
+  get 'recipes/edit'
+
+  get 'recipes/update'
+
+  get 'recipes/destroy'
+
+	root 'recipe_searches#index'
   get 'recipe_searches/index' => 'recipe_searches#index'
 
   get 'recipe_searches/show' => 'recipe_searches#show', as: 'show'
