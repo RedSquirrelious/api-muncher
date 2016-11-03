@@ -1,6 +1,6 @@
 <h1>Recipe Searches</h1>
 
-<%= form_tag('search_path', :method => "get") do %>
+<%= form_tag('list_path', :method => "get") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Recipe Keyword" %>
 <%= submit_tag "Search" %>
 <% end %>
