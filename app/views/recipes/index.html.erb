@@ -1,2 +1,18 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<% unless @search == nil %>
+  <%= @search.each do |recipe| %>
+    <article>
+      <ul>
+        <li><a href="recipe.url"> recipe.label </a></li>
+        <li> recipe.ingredientsLines </li>
+
+        <% recipe.totalNutrients.each do |nutrient| %>
+          <li> nutrient.label </li>
+          <li> nutrient.quantity nutrient.unit </li>
+        <% end %>
+
+      </ul>
+    </article>
+  <% end %>
+<% end %>
+
+<%= render partial: 'search' %>
