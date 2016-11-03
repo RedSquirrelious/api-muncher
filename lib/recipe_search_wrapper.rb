@@ -3,18 +3,20 @@ require 'httparty'
 require 'recipe_result'
 
 class RecipeSearchWrapper
+	attr_reader :label, :uri, :image, :shareas
+
+
 
 #CONSTANTS
 #hide that information away!
 	APP_ID = ENV["APP_ID"]
 	APP_KEY = ENV["APP_KEY"]
 
-#this is where it all starts
-	BASE_URL = "https://api.edamam.com/"
+	BASE_URL = "https://api.edamam.com/search?"
 
-#because who wants to type all that?  
-	AUTH = "&app_id=APP_ID&app_key=APP_KEY"
 # /CONSTANTS
+
+
 
 
 #CREATE A WRAPPER 
@@ -26,27 +28,28 @@ class RecipeSearchWrapper
 	end
 
 
-#helps users find recipes by an ingredient
-	def self.search_by_one_keyword(keyword, app_id = nil, app_key = nil)
-		app_id ||= APP_ID
-		app_key ||= APP_KEY
 
-		url = BASE_URL + "search?q=#{keyword}" + AUTH
+#helps users find recipes by an ingredient
+	def self.search_by_one_keyword(keyword, my_app_id = nil, my_app_key = nil)
+		my_app_id ||= APP_ID
+		my_app_key ||= APP_KEY
+
+		url = BASE_URL + "q=#{keyword}" + "&app_id=#{my_app_id}" + "&app_key=#{my_app_key}" 
 
 #THIS IS WHERE THE MAGIC HAPPENS
 		data = HTTParty.get(url)
 
-		my_recipes = []
+		recipes = []
 
-		data["recipes"] 
 
-		if data["recipes"]
-			data["recipes"].each do |recipe|
+		if data["hits"]
+			my_recipes = data["hits"]
+			my_recipes.each do |recipe|
 				wrapper = RecipeResult.new(recipe["uri"], recipe["label"], image: recipe["image"], shareas: recipe["shareas"])
-				my_recipes << wrapper
+				recipes << wrapper
 			end
 			
-			return my_recipes
+			return recipes
 		
 		else
 
@@ -56,3 +59,8 @@ class RecipeSearchWrapper
 	end
 
 end
+
+
+
+
+
