@@ -34,11 +34,11 @@ class RecipeSearchWrapper
 
 
 #helps users find recipes by an ingredient
-	def self.search_by_one_keyword(keyword, my_app_id = nil, my_app_key = nil)
+	def search_by_one_keyword(keyword, my_app_id = nil, my_app_key = nil, list_start = 0, list_end = 10)
 		my_app_id ||= APP_ID
 		my_app_key ||= APP_KEY
 
-		url = BASE_URL + "q=#{keyword}" + "&app_id=#{my_app_id}" + "&app_key=#{my_app_key}" 
+		url = BASE_URL + "q=#{keyword}" + "&app_id=#{my_app_id}" + "&app_key=#{my_app_key}" + "&from=#{list_start}" + "&to=#{list_end}"
 
 #THIS IS WHERE THE MAGIC HAPPENS, MY JSON HASH
 		data = HTTParty.get(url)
@@ -51,7 +51,7 @@ class RecipeSearchWrapper
 			results_array = data["hits"]
 			
 			results_array.each do |result|
-				wrapper = RecipeResult.new(result["recipe"]["uri"], result["recipe"]["label"], result["recipe"]["image"], result["recipe"]["shareas"])
+				wrapper = RecipeResult.new(result["recipe"]["uri"], result["recipe"]["label"], result["recipe"]["image"], result["recipe"]["result"], ["recipe"]["shareas"], result["recipe"]["ingredientsLines"], result["recipe"]["calories"], result["recipe"]["totalNutrients"])
 				recipes << wrapper
 			end
 			
