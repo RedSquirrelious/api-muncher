@@ -2,20 +2,20 @@
 
 #NOTE dietlabels, health labels, cautions, ingredientlines, ingredients, totalNutrients, totalDaily show up as arrays (ingredients is an array of hashes)
 
-require 'recipe_search_wrapper'
+# require_relative 'recipe_search_wrapper'
 
 class RecipeResult
-	attr_reader :label, :uri, :image, :shareas
+	attr_reader :uri, :label, :image, :shareas
 
-	def initialize(uri, label, params = {})
+	def initialize(uri, label, image, shareas)
 		if uri == nil || uri == "" || label == nil || label == ""
 			raise ArgumentError
 		end
 
 		@uri = uri   #aka id
 		@label = label
-		@image = params["image"]
-		@shareas = params["shareas"] #link to the recipe on edamam website, as opposed to the source website
+		@image = image
+		@shareas = shareas #link to the recipe on edamam website, as opposed to the source website
 
 	end
 
