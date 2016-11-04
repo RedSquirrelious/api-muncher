@@ -5,8 +5,10 @@
 # require_relative 'recipe_search_wrapper'
 
 class RecipeResult
-	attr_reader :uri, :label, :image, :shareas, :ingredientsLines
-	def initialize(uri, label, image, url, shareas, ingredientsLines, calories, totalNutrients)
+	attr_reader :uri, :label, :image, :url, :shareas, :ingredientLines, :calories, :totalNutrients, :hit_num, :search_term
+	# def initialize(uri, label, image, url)
+		def initialize(uri, label, image, url, shareas, ingredientLines, calories, totalNutrients, hit_num, search_term)
+		
 		if uri == nil || uri == "" || label == nil || label == ""
 			raise ArgumentError
 		end
@@ -16,9 +18,11 @@ class RecipeResult
 		@image = image
 		@url = url
 		@shareas = shareas #link to the recipe on edamam website, as opposed to the source website
-		@ingredientsLines = ingredientsLines
+		@ingredientLines = ingredientLines
 		@calories = calories
 		@totalNutrients = totalNutrients
+		@hit_num = hit_num
+		@search_term = search_term
 	end
 
 

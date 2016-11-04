@@ -24,21 +24,27 @@ class RecipeSearchWrapper
 
 
 #CREATE A WRAPPER 
-	def initialize(uri, label, image, shareas)
+	def initialize(uri, label, image, url, shareas, ingredientLines, calories, totalNutrients, hit_num, search_term)
 		@uri = uri   #aka id
 		@label = label
 		@image = image
 		@shareas = shareas #link to the recipe on edamam website, as opposed to the source website
+		@ingredientLines = ingredientLines
+		@calories = calories
+		@totalNutrients = totalNutrients
+		@hit_num = hit_num
+		@search_term = search_term
 	end
 
 
 
 #helps users find recipes by an ingredient
-	def search_by_one_keyword(keyword, my_app_id = nil, my_app_key = nil, list_start = 0, list_end = 10)
+	def self.search_by_one_keyword(keyword, list_start = 0,  list_end = 10, my_app_id = nil, my_app_key = nil)
 		my_app_id ||= APP_ID
 		my_app_key ||= APP_KEY
 
-		url = BASE_URL + "q=#{keyword}" + "&app_id=#{my_app_id}" + "&app_key=#{my_app_key}" + "&from=#{list_start}" + "&to=#{list_end}"
+		url = BASE_URL + "q=#{keyword}" + "&app_id=#{my_app_id}" + "&app_key=#{my_app_key}" + "&from=#{list_start}" 
+		+ "&to=#{list_end}"
 
 #THIS IS WHERE THE MAGIC HAPPENS, MY JSON HASH
 		data = HTTParty.get(url)
@@ -50,9 +56,15 @@ class RecipeSearchWrapper
 			
 			results_array = data["hits"]
 			
+			hit_num = 1
+
 			results_array.each do |result|
-				wrapper = RecipeResult.new(result["recipe"]["uri"], result["recipe"]["label"], result["recipe"]["image"], result["recipe"]["result"], ["recipe"]["shareas"], result["recipe"]["ingredientsLines"], result["recipe"]["calories"], result["recipe"]["totalNutrients"])
+ #@hit?  use a counter to give hit numbers?  and then when showing, pass the hit number as the list_start argument?
+
+				wrapper = RecipeResult.new(result["recipe"]["uri"], result["recipe"]["label"], result["recipe"]["image"], result["recipe"]["url"], result["recipe"]["shareas"], result["recipe"]["ingredientLines"], result["recipe"]["calories"], result["recipe"]["totalNutrients"], hit_num, keyword)
+				# wrapper = RecipeResult.new(result["recipe"]["uri"], result["recipe"]["label"], result["recipe"]["image"], result["recipe"]["url"])
 				recipes << wrapper
+				hit_num += 1
 			end
 			
 			return recipes
@@ -64,7 +76,10 @@ class RecipeSearchWrapper
 		end
 	end
 
-# end
+def self.show_just_one_recipe
+
+
+end
 
 
 	def self.search_sample
@@ -105,7 +120,7 @@ end
 
 # test = RecipeSearchWrapper.search_sample
 
-test = RecipeSearchWrapper.search_by_one_keyword("carrots")
+test = RecipeSearchWrapper.search_by_one_keyword("carrots", 3, 3)
 
 puts test
 puts test.class

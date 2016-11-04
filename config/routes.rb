@@ -1,18 +1,26 @@
 Rails.application.routes.draw do
-	root: 'recipe_searches#index'
-  get 'recipe_searches/index' => 'recipe_searches#index'
 
-  get 'recipe_searches/show' => 'recipe_searches#show', as: 'show'
+root 'recipes#index'
 
-  get 'recipe_searches/new' => 'recipe_searches#new'
+  #********     RECIPES ROUTES     *********
 
-  get 'recipe_searches/create' => 'recipe_searches#create'
+  get 'recipes/search' => 'recipes#search', as: 'search'
 
-  get 'recipe_searches/edit' => 'recipe_searches#edit'
+  get 'recipes' => 'recipes#index', as: 'index'
 
-  get 'recipe_searches/update' => 'recipe_searches#update'
+  get 'recipes/show' => 'recipes#show', as: 'show'
 
-  get 'recipe_searches/destroy'
+  get 'recipes/new'
+
+  get 'recipes/create'
+
+  get 'recipes/edit'
+
+  get 'recipes/update'
+
+  get 'recipes/destroy'
+
+  #********     USERS ROUTES     *********
 
 
   get 'users/index' => 'users#index'
