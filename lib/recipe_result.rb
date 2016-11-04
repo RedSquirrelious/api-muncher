@@ -5,7 +5,7 @@
 # require_relative 'recipe_search_wrapper'
 
 class RecipeResult
-	attr_reader :uri, :label, :image, :url, :shareas, :ingredients, :calories, :totalNutrients
+	attr_reader :uri, :label, :image, :url, :shareas, :ingredients, :calories, :totalNutrients, :totalDaily
 	# def initialize(uri, label, image, url)
 		def initialize(recipe_details)
 		
@@ -35,6 +35,7 @@ class RecipeResult
 		@ingredients = recipe_details['ingredients']
 		@calories = recipe_details['calories']
 		@totalNutrients = recipe_details['totalNutrients']
+		@totalDaily = recipe_details['totalDaily']
 	end
 
 
