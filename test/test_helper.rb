@@ -23,6 +23,14 @@ class ActiveSupport::TestCase
   config.default_cassette_options = {
     :record => :new_episodes    # record new data when we don't have it yet
   }
+
+  config.filter_sensitive_data("<API_ID>") do
+  ENV['API_ID']
+  end
+
+  config.filter_sensitive_data("<API_KEY>") do
+  ENV['API_KEY']
+  end
 	end
 	
 end
