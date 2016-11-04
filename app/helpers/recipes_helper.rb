@@ -7,4 +7,14 @@ module RecipesHelper
 		end
 	end
 
+	def go_on(from)
+		from = "#{from.to_i + 10}"
+		return from
+	end
+
+	def go_back(from)
+		from = "#{from.to_i - 10}"
+		return from
+	end
+
 end
