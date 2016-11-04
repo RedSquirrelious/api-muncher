@@ -28,15 +28,8 @@ class RecipesController < ApplicationController
 
   def show
   	#paginate with @hit in the list_start local?
-  	@result = RecipeSearchWrapper.search_by_one_keyword(params["search_term"], params["hit_num"].to_i, params["hit_num"].to_i)
-  	@uri = params["uri"]   #aka id
-		@label = params["label"]
-		@image = params["image"]
-		@url = params["url"]
-		@shareas = params["shareas"] #link to the recipe on edamam website, as opposed to the source website
-		@ingredientsLines = params["ingredientsLines"]
-		@calories = params["calories"]
-		@totalNutrients = params["totalNutrients"]
+  	@result = RecipeSearchWrapper.show_just_one_recipe(params[:id])
+
   end
 
   def new
@@ -54,3 +47,4 @@ class RecipesController < ApplicationController
   def destroy
   end
 end
+

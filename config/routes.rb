@@ -4,11 +4,11 @@ root 'recipes#index'
 
   #********     RECIPES ROUTES     *********
 
-  get 'recipes/search' => 'recipes#search', as: 'search'
+  get 'recipes/search' => 'recipes#search', as: 'recipes_search'
 
-  get 'recipes' => 'recipes#index', as: 'index'
+  get 'recipes' => 'recipes#index', as: 'recipes_index'
 
-  get 'recipes/show' => 'recipes#show', as: 'show'
+  get 'recipes/show/:id' => 'recipes#show', as: 'recipes_show'
 
   get 'recipes/new'
 

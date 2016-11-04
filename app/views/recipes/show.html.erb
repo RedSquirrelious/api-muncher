@@ -1,2 +1,8 @@
-<h1>meep<%= @result %></h1>
+<h1><%= @result.label %></h1>
+  <ul>
+    <% @result.ingredients.each do |ingredient| %>
+        <li><%= ingredient['text'] %>
+    <% end %>
+  </ul>
 
+  <%= button_to "Back", root_path, method: :get, class: 'button' %>

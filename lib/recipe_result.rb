@@ -5,24 +5,36 @@
 # require_relative 'recipe_search_wrapper'
 
 class RecipeResult
-	attr_reader :uri, :label, :image, :url, :shareas, :ingredientLines, :calories, :totalNutrients, :hit_num, :search_term
+	attr_reader :uri, :label, :image, :url, :shareas, :ingredients, :calories, :totalNutrients
 	# def initialize(uri, label, image, url)
-		def initialize(uri, label, image, url, shareas, ingredientLines, calories, totalNutrients, hit_num, search_term)
+		def initialize(recipe_details)
 		
-		if uri == nil || uri == "" || label == nil || label == ""
+		@label = recipe_details['label']
+
+
+		@uri = ""
+    real_uri = false
+
+    recipe_details['uri'].each_char do |character|
+      if character == "_"
+        real_uri = true
+      end
+
+      if real_uri
+        @uri << character
+      end
+    end
+
+		if @uri == nil || @uri == "" || @label == nil || @label == ""
 			raise ArgumentError
 		end
 
-		@uri = uri   #aka id
-		@label = label
-		@image = image
-		@url = url
-		@shareas = shareas #link to the recipe on edamam website, as opposed to the source website
-		@ingredientLines = ingredientLines
-		@calories = calories
-		@totalNutrients = totalNutrients
-		@hit_num = hit_num
-		@search_term = search_term
+		@image = recipe_details['image']
+		@url = recipe_details['url']
+		@shareas = recipe_details['shareas'] #link to the recipe on edamam website, as opposed to the source website
+		@ingredients = recipe_details['ingredients']
+		@calories = recipe_details['calories']
+		@totalNutrients = recipe_details['totalNutrients']
 	end
 
 
