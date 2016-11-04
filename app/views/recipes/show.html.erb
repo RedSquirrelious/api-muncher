@@ -1,5 +1,6 @@
 <h1><%= @result.label %></h1>
   <ul>
+    <li><%= image_tag @result.image %></li>
     <% @result.ingredients.each do |ingredient| %>
         <li><%= ingredient['text'] %>
     <% end %>
