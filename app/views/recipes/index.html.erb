@@ -1,7 +1,11 @@
 <% unless @results == nil %>
   <% @results.each do |recipe| %>
     <article>
+
       <ul>
+
+      <li><%= image_tag recipe.image %></li>
+
         <li><%= link_to recipe.label, recipes_show_path(recipe.uri), target: "_blank" %></li>
 
       </ul>
@@ -10,25 +14,13 @@
 
 
   <% if params[:from].to_i >= 10 %>
-    <div class="row small-up-1 medium-up-2 large-up-4">
-        <%= form_tag(recipes_search_path(), :method => "get") do %>
-          <%= hidden_field_tag("query", "#{params[:query]}")%>
-          <%= hidden_field_tag("from", "#{params[:from].to_i - 10}") %>
-          <%= submit_tag "Back", :name => nil, class: 'button' %>
-        <% end %>
-    </div>
+    <%= render partial: 'search', locals: {y: go_back(params[:from]), z: "Back" } %>
   <% end %>
 
-  <div class="row small-up-1 medium-up-2 large-up-4">
-      <%= form_tag(recipes_search_path(), :method => "get") do %>
-        <%= hidden_field_tag("query", "#{params[:query]}")%>
-        <%= hidden_field_tag("from", "#{params[:from].to_i + 10}") %>
-        <%= submit_tag "Next", :name => nil, class: 'button' %>
-      <% end %>
-  </div>
+  <%= render partial: 'search', locals: {y: go_on(params[:from]), z: "Next"} %>
 <% end %>
-<h1>Recipe Search</h1>
 
+<h1>Recipe Search</h1>
 
   <div class="row small-up-1 medium-up-2 large-up-4">
     <h3 class="headline">Find a Recipe</h3>
