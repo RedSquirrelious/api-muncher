@@ -1,8 +1,15 @@
-<h1><%= @result.label %></h1>
+<h1><%= link_to @result.label, @result.url %></h1>
   <ul>
     <li><%= image_tag @result.image %></li>
     <% @result.ingredients.each do |ingredient| %>
-        <li><%= ingredient['text'] %>
+        <li><%= round_to(ingredient['quantity'], 0) %> <%= ingredient['measure'].titleize %> <%= ingredient['food'].titleize %>
+    <% end %>
+
+    <% @result.totalDaily.each do |key, value| %>
+        <li>
+      <%  value.each do |k, v| %>
+          <%= round_to(v, 2) %>
+          <% end %></li>
     <% end %>
   </ul>
 
