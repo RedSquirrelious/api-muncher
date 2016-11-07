@@ -37,6 +37,7 @@ gem 'awesome_print'
 # API GEMS
 gem 'httparty'
 
+gem 'will_paginate', '~> 3.1'
 
 # Helps make it pretty, CSS-related gem
 gem 'foundation-rails'
