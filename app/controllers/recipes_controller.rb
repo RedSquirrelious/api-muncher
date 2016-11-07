@@ -5,9 +5,12 @@ class RecipesController < ApplicationController
   def search
 
   	@keyword = params[:query]
-  	@from = params[:from]
-  	@to = "#{params[:from].to_i + 10}"
-  	@results = RecipeSearchWrapper.search_by_one_keyword(@keyword, @from, @to)
+  	@results = RecipeSearchWrapper.search_by_one_keyword(@keyword)
+  	
+  	unless @results == nil
+  		@results = @results.paginate(:page => params[:page], :per_page => 10)
+  	end
+
   	render :index
 
   end
