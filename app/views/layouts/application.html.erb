@@ -7,6 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+
+    <div class="top-bar">
+        <div class="wrapper">
+      <div class="top-bar-title">
+
+        <h1>Choose Your Own (Dining!?!) Adventure</h1>
+      </div>
+
+      <div class="top-bar-left">
+
+      </div>
+
+      <div class="top-bar-right">
+        <%= render partial: 'search' %>
+      </div>
+      </div> <!-- wrapper end div -->
+    </div>  <!-- top-bar end div -->
 
 <%= yield %>
 
