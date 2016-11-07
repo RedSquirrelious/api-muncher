@@ -31,7 +31,9 @@ class RecipeSearchWrapper
 
 
 #helps users find recipes by an ingredient
-	def self.search_by_one_keyword(keyword, list_start = 0, list_end = 10, my_app_id = nil, my_app_key = nil )
+
+#changed to 100 for will_paginate
+	def self.search_by_one_keyword(keyword, list_start = 0, list_end = 100, my_app_id = nil, my_app_key = nil )
 		my_app_id ||= APP_ID
 		my_app_key ||= APP_KEY
 
@@ -52,7 +54,6 @@ class RecipeSearchWrapper
 
 				recipes << wrapper
 
-										# binding.pry
 			end
 			
 			return recipes
